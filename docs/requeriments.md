@@ -98,3 +98,16 @@ Responsive web application for maintenance task management accessible on desktop
 - **Security**: Role-based access control with data isolation
 - **Storage**: Image compression (max 2MB per photo)
 - **Reliability**: Automatic daily database backups
+
+## 8. Functional Requirements
+- A user must be able to register on the platform using their credentials.
+- A user must be able to log in with previously registered credentials.
+- Depending on their role, the application will allow users to create activities.
+- For each activity, it must be possible to create follow-ups and assign them to a responsible party.
+- The application must display a list of activities.
+- Each activity will have an associated list of follow-ups.
+- The activity list will include a filter, as will the follow-up list.
+- Users with the evaluator role will be able to manage activity progress by closing, canceling, or postponing them.
+- Each activity must have a completion percentage, determined by its assigned follow-ups.
+- The completion percentage of follow-ups will be cumulatively reflected in the activity's overall percentage.
+- Users may log out of the platform at any time via a dedicated logout button.
