@@ -1,0 +1,5 @@
+# Archivos python
+__pycache__/
+
+# Django
+*.sqlite3
