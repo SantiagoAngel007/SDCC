@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Actividades</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 2rem;
+            background-color: #fff;
+        }
+
+        /* Contenedor de la barra de búsqueda */
+        .search-bar {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .search-bar input[type="text"] {
+            padding: 8px;
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .search-bar input[type="radio"] {
+            margin-left: 15px;
+        }
+
+        .search-bar button {
+            background-color: #7b5bff;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        /* Tabla de actividades */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            font-weight: bold;
+            color: #555;
+        }
+
+        td strong {
+            color: #7b5bff;
+        }
+
+        /* Botones "Atrás" y "Siguiente" sin funcionalidad de paginación */
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .button-group button {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: 1px solid #7b5bff;
+            background-color: white;
+            color: #7b5bff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 🔍 Barra de búsqueda -->
+<form method="GET" class="search-bar">
+    <input type="text" name="q" placeholder="Búsqueda">
+    <label><input type="radio" name="filtro" value="fecha"> Fecha</label>
+    <label><input type="radio" name="filtro" value="id"> ID Actividad</label>
+    <label><input type="radio" name="filtro" value="maquina"> Máquina</label>
+    <button type="submit">Buscar</button>
+</form>
+
+<!-- 📋 Tabla de actividades -->
+<table>
+    <thead>
+        <tr>
+            <th>Actividad</th>
+            <th>Estado</th>
+            <th>Porcentaje</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for actividad in actividades %}
+        <tr>
+            <td>{{ actividad.titulo }}</td>
+            <td>{{ actividad.estado }}</td>
+            <td><strong>{{ actividad.porcentaje }}%</strong></td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">No se encontraron actividades.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- 👇 Botones de navegación visual (no funcionales si no lo deseas) -->
+<div class="button-group">
+    <button type="button">Atrás</button>
+    <button type="button">Siguiente</button>
+</div>
+
+</body>
+</html>

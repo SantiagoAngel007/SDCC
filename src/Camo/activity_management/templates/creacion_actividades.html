@@ -1,0 +1,203 @@
+<!-- Declaración del documento HTML -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Codificación de caracteres para permitir tildes y caracteres especiales -->
+    <meta charset="UTF-8">
+    
+    <!-- Título que aparecerá en la pestaña del navegador -->
+    <title>Creación de actividad</title>
+    
+    <!-- Estilos CSS internos para dar formato visual al formulario -->
+    <style>
+        /* Estilos generales del cuerpo */
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff;
+            padding: 2rem;
+        }
+
+        /* Contenedor principal del formulario */
+        .form-container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        /* Título del formulario */
+        .form-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Filas de los campos del formulario */
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 1rem;
+        }
+
+        /* Grupo individual de campo (label + input/select) */
+        .form-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Estilo de los labels de los campos */
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        /* Estilo para inputs, selects y áreas de texto */
+        input, select, textarea {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* Grupo para checkboxes con alineación horizontal */
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        /* Contenedor de los botones de acción */
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        /* Estilo general de los botones */
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Botón morado: "Crear" */
+        .btn-primary {
+            background-color: #7b5bff;
+            color: white;
+        }
+
+        /* Botón blanco con borde morado: "Atrás" */
+        .btn-secondary {
+            background-color: white;
+            border: 1px solid #7b5bff;
+            color: #7b5bff;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Contenedor general del formulario -->
+<div class="form-container">
+
+    <!-- Título que se muestra en la parte superior -->
+    <div class="form-title">Creación de actividad</div>
+
+    <!-- Inicio del formulario HTML -->
+    <form method="POST">
+        <!-- Token de seguridad obligatorio en Django -->
+        {% csrf_token %}
+
+        <!-- Fila con ID de la actividad y Fecha Inicio -->
+        <div class="form-row">
+            <div class="form-group">
+                <!-- Campo ID solo lectura -->
+                <label for="id">ID Actividad</label>
+                <input type="text" name="id" value="{{ form.id.value }}" readonly>
+            </div>
+            <div class="form-group">
+                <!-- Campo Fecha Inicio -->
+                <label for="fecha_inicio">Fecha Inicio</label>
+                <input type="text" name="descripcion_fuente" placeholder="Type here">
+            </div>
+        </div>
+
+        <!-- Fila con Referencia Fuente y Fecha Final -->
+        <div class="form-row">
+            <div class="form-group">
+                <label for="descripcion_fuente">Referencia Fuente</label>
+                <!-- Campo manual (si no está en el modelo) -->
+                <input type="text" name="descripcion_fuente" placeholder="Type here">
+            </div>
+            <div class="form-group">
+                <label for="fecha_final">Fecha Final</label>
+                <input type="text" name="fecha_final" placeholder="Type here">
+            </div>
+        </div>
+
+        <!-- Fila con Máquina y Encargado -->
+        <div class="form-row">
+            <div class="form-group">
+                <label for="maquina_id">Referencia Máquina</label>
+                {{ form.maquina_id }}
+            </div>
+            <div class="form-group">
+                <label for="encargado_id">Encargado</label>
+                {{ form.encargado_id }}
+            </div>
+        </div>
+
+        <!-- Fila con Evaluador y Emisor -->
+        <div class="form-row">
+           <div class="form-group">
+                <label for="tipo">Tipo Acción</label>
+                <input type="text" name="tipo" placeholder="Type here">
+            </div>
+            <div class="form-group">
+                <label for="emisor_id">Emisor</label>
+                {{ form.emisor_id }}
+            </div>
+        </div>
+
+        <!-- Fila con Título y Tipo de acción -->
+        <div class="form-row">
+            <div class="form-group">
+                <label for="titulo"> Título</label>
+                <input type="text" name="titulo" placeholder="Type here">
+            </div>
+             <div class="form-group">
+                <label for="evaluador_id">Evaluador</label>
+                {{ form.evaluador_id }}
+            </div>
+        </div>
+
+        <!-- Checkbox para Periodo -->
+       <div class="checkbox-group">
+            <input type="checkbox" name="periodo" id="periodo">
+            <label for="periodo">Periodo (Días)</label>
+        </div>
+
+        <!-- Checkbox para Repeticiones -->
+        <div class="checkbox-group">
+             <input type="checkbox" name="repeticiones" id="repeticiones">
+            <label for="repeticiones">Repeticiones</label>
+        </div>
+
+        <!-- Campo para descripción -->
+        <div class="form-group">
+            <label for="descripcion">Descripción</label>
+                  <input type="text" name="descripcion" placeholder="Type here">
+        </div>
+
+        <!-- Botones: Atrás y Crear -->
+        <div class="button-group">
+            <!-- Botón Atrás (sin funcionalidad por ahora) -->
+            <button type="button" class="btn-secondary">Atrás</button>
+            <!-- Botón para enviar el formulario -->
+            <button type="submit" class="btn-primary">Crear</button>
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>

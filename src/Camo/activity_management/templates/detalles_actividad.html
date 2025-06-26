@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle de Actividad</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 2rem;
+            background-color: #fff;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        h1 {
+            margin-bottom: 2rem;
+        }
+
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            flex: 0 0 48%;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1rem;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input, textarea {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[readonly], textarea[readonly] {
+            background-color: #f9f9f9;
+        }
+
+        .button-group {
+            margin-top: 2rem;
+            display: flex;
+            gap: 10px;
+        }
+
+        .button-group button {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #7b5bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        .button-group .secondary {
+            background-color: white;
+            border: 1px solid #7b5bff;
+            color: #7b5bff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Actividad</h1>
+
+    <div class="form-row">
+        <div class="form-group">
+            <label>Título</label>
+            <input type="text" value="{{ actividad.titulo }}" readonly>
+        </div>
+        <div class="form-group">
+            <label>Porcentaje Cumplimiento</label>
+            <input type="text" value="{{ actividad.porcentaje }} %" readonly>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group">
+            <label>Fecha Inicio</label>
+            <input type="text" value="{{ actividad.fecha_inicio }}" readonly>
+        </div>
+        <div class="form-group">
+            <label>Fecha Final</label>
+            <input type="text" value="{{ actividad.fecha_final }}" readonly>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Duración (Días)</label>
+        <input type="text" value="{{ actividad.duracion }}" readonly>
+    </div>
+
+    <div class="form-group">
+        <label>Descripción</label>
+        <textarea rows="3" readonly>{{ actividad.descripcion }}</textarea>
+    </div>
+
+    <div class="form-group">
+        <label>Estado</label>
+        <input type="text" value="{{ actividad.estado }}" readonly>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group">
+            <label>Emisor</label>
+            <input type="text" value="{{ actividad.emisor.nombre }}" readonly>
+        </div>
+        <div class="form-group">
+            <label>Evaluador</label>
+            <input type="text" value="{{ actividad.evaluador.nombre }}" readonly>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Encargado</label>
+        <input type="text" value="{{ actividad.encargado.nombre }}" readonly>
+    </div>
+
+    <!-- Botones de acción -->
+    <div class="button-group">
+        <button onclick="location.href='{% url 'realizar_avance' actividad.id %}'">Realizar Avance</button>
+        <button class="secondary" onclick="location.href='{% url 'listar_seguimientos' actividad.id %}'">Listado de Seguimientos</button>
+        <button class="secondary" onclick="location.href='{% url 'evaluar_actividad' actividad.id %}'">Evaluar</button>
+    </div>
+
+    <!-- Botón atrás -->
+    <div style="margin-top: 2rem;">
+        <button class="secondary" onclick="history.back()">Atrás</button>
+    </div>
+</div>
+
+</body>
+</html>
